@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-map!	
+MAPPP	
 <meta charset="utf-8">
 <script src="https://d3js.org/d3.v3.min.js"></script>
 <style type="text/css">
@@ -46,15 +46,10 @@ http://bl.ocks.org/mbostock/3888852  */
 var width = 960;
 var height = 1200;
 
-// D3 Projection
-var projection = d3.geoPath()
+var path = d3.geoPath()
       .projection(d3.geoTransverseMercator()
           .rotate([74 + 30 / 60, -38 - 50 / 60])
           .fitExtent([[20, 20], [940, 1180]], land));
-        
-// Define path generator
-var path = d3.geo.path()               // path generator that will convert GeoJSON to SVG paths
-		  	 .projection(projection);  // tell path generator to use albersUsa projection
 
 //Create SVG element and append map to the SVG
 var svg = d3.select("body")
