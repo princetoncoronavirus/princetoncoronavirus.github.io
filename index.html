@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>	
-hello!
+<head>
 <meta charset="utf-8">
 <script src="https://d3js.org/d3.v3.min.js"></script>
 <style type="text/css">
@@ -46,11 +45,8 @@ http://bl.ocks.org/mbostock/3888852  */
 var width = 960;
 var height = 1200;
 
-var projection = d3.geo.mercator()
-  .scale(1500)
-  // Center the Map in Colombia
-  .center([40.2, -74.5])
-  .translate([width / 2, height / 2]);
+var projection = d3.geoTransverseMercator()
+        .rotate([76 + 35 / 60, - 40]);
 
 var path = d3.geo.path()
   .projection(projection);
