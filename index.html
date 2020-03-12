@@ -45,9 +45,9 @@ http://bl.ocks.org/mbostock/3888852  */
 var width = 960;
 var height = 1200;
 
-var projection = d3.geo.albersUsa()
-	.translate([width/2, height/2])    // translate to center of screen
-	;
+var projection = d3.geo.albersUsa();
+	
+projection.rotate(-75).fitExtent([ [ 0, 0 ], [ width, height ] ], json);
 
 var path = d3.geo.path()               // path generator that will convert GeoJSON to SVG paths
 	.projection(projection);
