@@ -46,9 +46,11 @@ var width = 1000;
 var height = 1000;
 
 // D3 Projection
-var projection = d3.geo.albersUsa()
-				   .translate([width/2, height/2])    // translate to center of screen
-				   .scale([1000]);          // scale things down so see entire US
+var projection = d3.geo.mercator()
+  .scale(1500)
+  // Center the map
+  .center([40.2, -74.5])
+  .translate([width / 2, height / 2]);
         
 // Define path generator
 var path = d3.geo.path()               // path generator that will convert GeoJSON to SVG paths
