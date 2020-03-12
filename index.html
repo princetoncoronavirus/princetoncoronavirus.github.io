@@ -16,12 +16,34 @@
   </head>
 
   <body>
-
+    MAP!
     <div id="map"></div>
 
-    <script src="https://d3js.org/d3.v3.min.js"></script>
-    <script src="https://d3js.org/topojson.v1.js"></script>
-    <script src="main.js"></script>
+<meta charset="utf-8">
+<canvas width="960" height="800"></canvas>
+<script src="https://d3js.org/d3.v4.min.js"></script>
+<script src="https://d3js.org/topojson.v1.min.js"></script>
+<script>
+
+var canvas = d3.select("canvas").node(),
+    context = canvas.getContext("2d"),
+    path = d3.geoPath().projection(null).context(context);
+
+d3.json("nj.json", function(error, nj) {
+  if (error) throw error;
+
+  context.beginPath();
+  path(topojson.feature(nj, nj.objects.cb_2015_new_jersey_county_20m));
+  context.fillStyle = "#ddd";
+  context.fill();
+
+  context.beginPath();
+  path(topojson.mesh(nj, nj.objects.cb_2015_new_jersey_county_20m, function(a, b) { return a !== b; }));
+  context.strokeStyle = "#999";
+  context.stroke();
+});
+
+</script>
 
   </body>
 </html>
