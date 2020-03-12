@@ -45,11 +45,12 @@ http://bl.ocks.org/mbostock/3888852  */
 var width = 960;
 var height = 1200;
 
-var projection = d3.geoTransverseMercator()
-        .rotate([76 + 35 / 60, - 40]);
+var projection = d3.geo.albersUsa()
+	.translate([width/2, height/2])    // translate to center of screen
+	;
 
-var path = d3.geo.path()
-  .projection(projection);
+var path = d3.geo.path()               // path generator that will convert GeoJSON to SVG paths
+	.projection(projection);
 
 //Create SVG element and append map to the SVG
 var svg = d3.select("body")
