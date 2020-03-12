@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>	
+hello!
 <meta charset="utf-8">
 <script src="https://d3js.org/d3.v3.min.js"></script>
 <style type="text/css">
@@ -45,10 +46,14 @@ http://bl.ocks.org/mbostock/3888852  */
 var width = 960;
 var height = 1200;
 
-var path = d3.geoPath()
-      .projection(d3.geoTransverseMercator()
-          .rotate([74 + 30 / 60, -38 - 50 / 60])
-          .fitExtent([[20, 20], [940, 1180]], land));
+var projection = d3.geo.mercator()
+  .scale(1500)
+  // Center the Map in Colombia
+  .center([-74, 4.5])
+  .translate([width / 2, height / 2]);
+
+var path = d3.geo.path()
+  .projection(projection);
 
 //Create SVG element and append map to the SVG
 var svg = d3.select("body")
