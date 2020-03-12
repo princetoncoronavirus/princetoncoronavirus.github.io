@@ -1,49 +1,127 @@
-<!doctype html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
 <meta charset="utf-8">
-<html>
-  <head>
+<script src="https://d3js.org/d3.v3.min.js"></script>
+<style type="text/css">
 
-    <title>New Jersey COVID-19 Tracker</title>
+/* On mouse hover, lighten state color */
+path:hover {
+	fill-opacity: .7;
+}
 
-    <style type="text/css">
-      #map {
-        width: 615px;
-        height: 375px;
-      }
-    </style>
+/* Style for Custom Tooltip */
+div.tooltip {   
+ 	position: absolute;           
+	text-align: center;           
+	width: 60px;                  
+	height: 28px;                 
+	padding: 2px;             
+	font: 12px sans-serif;        
+	background: white;   
+	border: 0px;      
+	border-radius: 8px;           
+	pointer-events: none;         
+}
 
+</style>
+</head>
+<body>
+<script type="text/javascript">
 
-  </head>
+/*  This visualization was made possible by modifying code provided by:
 
-  <body>
-    MAP!
-    <div id="map"></div>
+Scott Murray, Choropleth example from "Interactive Data Visualization for the Web" 
+https://github.com/alignedleft/d3-book/blob/master/chapter_12/05_choropleth.html   
+		
+Malcolm Maclean, tooltips example tutorial
+http://www.d3noob.org/2013/01/adding-tooltips-to-d3js-graph.html
 
-<meta charset="utf-8">
-<canvas width="960" height="800"></canvas>
-<script src="https://d3js.org/d3.v4.min.js"></script>
-<script src="https://d3js.org/topojson.v1.min.js"></script>
-<script>
+Mike Bostock, Pie Chart Legend
+http://bl.ocks.org/mbostock/3888852  */
 
-var canvas = d3.select("canvas").node(),
-    context = canvas.getContext("2d"),
-    path = d3.geoPath().projection(null).context(context);
+		
+//Width and height of map
+var width = 1000;
+var height = 1000;
 
-d3.json("nj.json", function(error, nj) {
-  if (error) throw error;
+// D3 Projection
+var projection = d3.geo.albersUsa()
+				   .translate([width/2, height/2])    // translate to center of screen
+				   .scale([1000]);          // scale things down so see entire US
+        
+// Define path generator
+var path = d3.geo.path()               // path generator that will convert GeoJSON to SVG paths
+		  	 .projection(projection);  // tell path generator to use albersUsa projection
 
-  context.beginPath();
-  path(topojson.feature(nj, nj.objects.cb_2015_new_jersey_county_20m));
-  context.fillStyle = "#ddd";
-  context.fill();
+//Create SVG element and append map to the SVG
+var svg = d3.select("body")
+			.append("svg")
+			.attr("width", width)
+			.attr("height", height);
+        
+// Append Div for tooltip to SVG
+var div = d3.select("body")
+		    .append("div")   
+    		.attr("class", "tooltip")               
+    		.style("opacity", 0);
 
-  context.beginPath();
-  path(topojson.mesh(nj, nj.objects.cb_2015_new_jersey_county_20m, function(a, b) { return a !== b; }));
-  context.strokeStyle = "#999";
-  context.stroke();
+// Load GeoJSON data and merge with states data
+d3.json("nj.json", function(json) {
+		
+// Bind the data to the SVG and create one path per GeoJSON feature
+svg.selectAll("path")
+	.data(json.features)
+	.enter()
+	.append("path")
+	.attr("d", path)
+	.style("stroke", "#fff")
+	.style("stroke-width", "1")
+	.style("fill", "rgb(213,222,217)")
 });
 
-</script>
+		 
+// // Map the cities I have lived in!
+// d3.csv("cities-lived.csv", function(data) {
 
-  </body>
+// svg.selectAll("circle")
+// 	.data(data)
+// 	.enter()
+// 	.append("circle")
+// 	.attr("cx", function(d) {
+// 		return projection([d.lon, d.lat])[0];
+// 	})
+// 	.attr("cy", function(d) {
+// 		return projection([d.lon, d.lat])[1];
+// 	})
+// 	.attr("r", function(d) {
+// 		return Math.sqrt(d.years) * 4;
+// 	})
+// 		.style("fill", "rgb(217,91,67)")	
+// 		.style("opacity", 0.85)	
+
+// 	// Modification of custom tooltip code provided by Malcolm Maclean, "D3 Tips and Tricks" 
+// 	// http://www.d3noob.org/2013/01/adding-tooltips-to-d3js-graph.html
+// 	.on("mouseover", function(d) {      
+//     	div.transition()        
+//       	   .duration(200)      
+//            .style("opacity", .9);      
+//            div.text(d.place)
+//            .style("left", (d3.event.pageX) + "px")     
+//            .style("top", (d3.event.pageY - 28) + "px");    
+// 	})   
+
+//     // fade out tooltip on mouse out               
+//     .on("mouseout", function(d) {       
+//         div.transition()        
+//            .duration(500)      
+//            .style("opacity", 0);   
+//     });
+// });  
+        
+
+
+// });
+</script>
+</body>
 </html>
