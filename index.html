@@ -61,7 +61,8 @@ var path = d3.geo.path()               // path generator that will convert GeoJS
 var svg = d3.select("body")
 			.append("svg")
 			.attr("width", width)
-			.attr("height", height);
+			.attr("height", height)
+			.attr("viewbox", "50 50 350 350");
         
 // Append Div for tooltip to SVG
 var div = d3.select("body")
