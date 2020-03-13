@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	Hello2
 <meta charset="utf-8">
 <script src="https://d3js.org/d3.v3.min.js"></script>
 <style type="text/css">
@@ -90,7 +89,7 @@ svg.selectAll("circle")
     	div.transition()        
       	   .duration(200)      
            .style("opacity", .9);      
-           div.text(d.place)
+           div.text(d.county + ', cases: ' + d.cases)
            .style("left", (d3.event.pageX) + "px")     
            .style("top", (d3.event.pageY - 28) + "px");    
 	})   
