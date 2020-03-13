@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-	New Jersey COVID-19 Tracker, Daily Princetonian
+	New Jersey COVID-19 Tracker, Daily Princetonian v2
 <head>
 <meta charset="utf-8">
 <script src="https://d3js.org/d3.v3.min.js"></script>
@@ -43,7 +43,16 @@ http://bl.ocks.org/mbostock/3888852  */
 
 
 // Load GeoJSON data and merge with states data
-d3.json("nj.json", function(json) {
+let requestURL = 'https://raw.githubusercontent.com/princetoncoronavirus/princetoncoronavirus.github.io/master/nj.json';
+let request = new XMLHttpRequest();
+request.open('GET', requestURL);
+request.responseType = 'json';
+request.send();
+request.onload = function() {
+  const nj = request.response;
+}
+	
+d3.json(nj, function(json) {
 
 //Width and height of map
 var width = 420
