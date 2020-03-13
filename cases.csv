@@ -1,4 +1,4 @@
-cases,county,lat,lon,cases,deaths
+county,lat,lon,cases,deaths
 Atlantic, 39.4624, -74.7081, 6, 0
 Bergen, 40.9322, -74.0563, 3, 0
 Burlington, 39.9996, -74.7535, 10, 0
