@@ -54,14 +54,19 @@ New Jersey COVID-19 Interactive Map
 </h1>
 
 <div style="width: 100%;">
-        <div style="width: 50%; height: 600px; float: left;" id="info"> 
+        <div style="width: 50%; height: 600px; float: left;" id="map"> 
             <h1>
 		    We're tracking COVID-10
 		</h1>
         </div>
-        <div style="margin-left: 50%; height: 600px;" id="map"> 	
+        <div style="margin-left: 50%; height: 600px;" id="info"> 	
         </div>
 </div>
+	
+<script>
+    d3.select("#info").style("color", "green");
+</script>
+	
 <script type="text/javascript">
 	
 d3.json("https://raw.githubusercontent.com/princetoncoronavirus/princetoncoronavirus.github.io/master/nj.json?raw=true", function(json) {
@@ -79,6 +84,7 @@ var projection = d3.geo.mercator()
 var path = d3.geo.path()               // path generator that will convert GeoJSON to SVG paths
 	.projection(projection);
 
+	
 //Create SVG element and append map to the SVG
 var svg = d3.select("map")
 			.append("svg")
