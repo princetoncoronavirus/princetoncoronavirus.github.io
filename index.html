@@ -53,7 +53,7 @@ var height = 1200;
 	
 const projection = d3.geoAlbers();	
 	
-projection.rotate(-75).fitExtent([ [ 0, 0 ], [ width, height ] ], features);	
+projection.rotate(-75).fitExtent([ [ 0, 0 ], [ width, height ] ], json);	
 
 const path = d3.geoPath().projection(projection);
 // var projection = d3.geo.albersUsa();
