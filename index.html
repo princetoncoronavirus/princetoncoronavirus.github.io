@@ -17,7 +17,7 @@ div.tooltip {
 	width: 100px;                  
 	height: 50px;                 
 	padding: 2px;             
-	font: 12px sans-serif;        
+	font: 15px sans-serif;        
 	background: white;
 	border: 2px;      
 	border-radius: 4px;
@@ -104,8 +104,7 @@ svg.selectAll("circle")
     	div.transition()        
       	   .duration(200)      
            .style("opacity", .9);      
-           div.text(<b> d.county </b>);
-	   div.text('Cases: ' + d.cases)
+           div.text(d.county + ' Cases: ' + d.cases)
            .style("left", (d3.event.pageX) + "px")     
            .style("top", (d3.event.pageY - 28) + "px");    
 	})   
