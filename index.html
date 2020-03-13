@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+	hello
 <head>
 <meta charset="utf-8">
 <script src="https://d3js.org/d3.v3.min.js"></script>
@@ -45,6 +46,9 @@ http://bl.ocks.org/mbostock/3888852  */
 var width = 960;
 var height = 1200;
 
+// Load GeoJSON data and merge with states data
+d3.json("nj.json", function(json) {
+		
 var projection = d3.geo.albersUsa();
 
 var path = d3.geo.path()               // path generator that will convert GeoJSON to SVG paths
@@ -61,10 +65,6 @@ var div = d3.select("body")
 		    .append("div")   
     		.attr("class", "tooltip")               
     		.style("opacity", 0);
-
-// Load GeoJSON data and merge with states data
-d3.json("nj.json", function(json) {
-		
 // Bind the data to the SVG and create one path per GeoJSON feature
 svg.selectAll("path")
 	.data(json.features)
