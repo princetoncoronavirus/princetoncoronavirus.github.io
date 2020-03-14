@@ -51,13 +51,11 @@ svg.selectAll("circle")
 	.attr("r", function(d) {
 		return Math.sqrt(d.cases) * 4;
 	})
-		.style("fill", "rgb(217,91,67)")	
+		.style("fill", "#ff8f00")	
 		.style("fill-opacity", 0.3)
-		.style("stroke", "rgb(217,91,67)")
+		.style("stroke", "#ff8f00")
 		.style("stroke-opacity", 1.0)
 
-	// Modification of custom tooltip code provided by Malcolm Maclean, "D3 Tips and Tricks" 
-	// http://www.d3noob.org/2013/01/adding-tooltips-to-d3js-graph.html
 	.on("mouseover", function(d) {      
     	div.transition()        
       	   .duration(200)      
