@@ -60,7 +60,7 @@ svg.selectAll("circle")
     	div.transition()        
       	   .duration(200)      
            .style("opacity", .9);      
-           div.text(d.county + ' Cases: ' + d.cases)
+           div.text(d.county + ' cases: ' + d.cases)
            .style("left", (d3.event.pageX) + "px")     
            .style("top", (d3.event.pageY - 28) + "px");    
 	})   
