@@ -11,7 +11,7 @@ var height = 400
 //   .clipAngle(90);
 
 var projection = d3.geo.mercator()
-  .scale(400)
+  .scale(4000)
   .center([-74, 40])
   .translate([width/2, height/2]);
 	
