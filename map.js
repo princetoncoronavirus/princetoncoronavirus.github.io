@@ -4,16 +4,16 @@ d3.json("https://raw.githubusercontent.com/princetoncoronavirus/princetoncoronav
 var width = 420
 var height = 400
 	
-// var projection = d3.geo.mercator()
-//   .scale(5758)
-//   .rotate([74.6,0,0])
-//   .translate([width/2, height/0.0864181367160906])
-//   .clipAngle(90);
-
 var projection = d3.geo.mercator()
-  .scale(4000)
-  .center([-74, 40])
-  .translate([width/2, height/2]);
+  .scale(5758)
+  .rotate([74.6,0,0])
+  .translate([width/2, height/0.0864181367160906])
+  .clipAngle(90);
+
+// var projection = d3.geo.mercator()
+//   .scale(4000)
+//   .center([-74, 40])
+//   .translate([width/2, height/2]);
 	
 var path = d3.geo.path()               // path generator that will convert GeoJSON to SVG paths
 	.projection(projection);
